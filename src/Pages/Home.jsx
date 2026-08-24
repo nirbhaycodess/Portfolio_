@@ -98,7 +98,7 @@ function Home() {
       setNameIndex((i) => (i + 1) % translations.length);
     }, 2200);
     return () => clearInterval(id);
-  }, []);
+  }, [translations.length]);
 
   // animate name on change
   useEffect(() => {

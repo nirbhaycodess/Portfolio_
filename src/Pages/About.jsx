@@ -1,5 +1,5 @@
 import React from "react";
-import { personalDetails, eduDetails } from "../Details";
+import { eduDetails } from "../Details";
 
 function About() {
   return (

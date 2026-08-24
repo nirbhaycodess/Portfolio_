@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { logos, socialMediaUrl } from "../Details";
+import React, { useEffect, useState } from "react";
+import { socialMediaUrl } from "../Details";
 import leetcodeIcon from "../assets/leetcode-256px.png";
 import linkedinImg from "../assets/linkedin.png";
 import instagramImg from "../assets/instagram.png";
 
 function Header() {
-  const [isOpen, setIsOpen] = useState(false);
   const [isDark, setIsDark] = useState(() => {
     try {
       const stored = localStorage.getItem("theme");
@@ -16,8 +15,6 @@ function Header() {
     }
   });
   const { linkedin, github, leetcode, instagram } = socialMediaUrl;
-
-  const toggleClass = () => setIsOpen((s) => !s);
 
   const linkHoverClass = "transition-colors duration-200 hover-gradient";
 
