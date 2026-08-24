@@ -21,7 +21,7 @@ function Project({ title, image, description, techstack, previewLink, githubLink
         </div>
 
         <div className="flex justify-between items-center mt-5">
-          <div className="flex items-center gap-3 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+          <div className="flex items-center gap-3">
             {previewLink ? (
               <a
                 href={previewLink}
@@ -35,7 +35,7 @@ function Project({ title, image, description, techstack, previewLink, githubLink
               <span className="text-sm text-light-content">No Live Demo</span>
             )}
           </div>
-          <div className="opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+          <div>
             <a
               href={githubLink}
               target="_blank"
