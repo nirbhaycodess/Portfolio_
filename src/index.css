@@ -64,13 +64,13 @@ body::-webkit-scrollbar {
 
 .hero-line,
 .hero-image {
-  animation: hero-enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: hero-enter 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.hero-line-two { animation-delay: 0.12s; }
-.hero-line-three { animation-delay: 0.24s; }
-.hero-image { animation-name: hero-image-enter; animation-delay: 0.16s; }
-.hero-wave { animation: hero-wave 1.5s ease-in-out infinite; transform-origin: 70% 70%; }
+.hero-line-two { animation-delay: 0.22s; }
+.hero-line-three { animation-delay: 0.44s; }
+.hero-image { animation-name: hero-image-enter; animation-delay: 0.3s; }
+.hero-wave { animation: hero-wave 2.2s ease-in-out infinite; transform-origin: 70% 70%; }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-line,
