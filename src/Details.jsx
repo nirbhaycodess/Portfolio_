@@ -110,7 +110,7 @@ export const projectDetails = [
     image: projectImage3,
     description: `Personal portfolio showcasing projects, tech stack, and contact information. Built with React and Tailwind.`,
     techstack: "React, Tailwind CSS",
-    previewLink: "",
+    previewLink: "https://nirbhay-dev.vercel.app",
     githubLink: "https://github.com/nirbhaycodess/Portfolio_",
   },
   

@@ -77,7 +77,6 @@ function Contact() {
             {status === "success" && <span className="text-green-500">Message sent — thank you!</span>}
             {status === "error" && <span className="text-red-500">Error: {error}</span>}
           </div>
-
         </form>
       </div>
     </main>
