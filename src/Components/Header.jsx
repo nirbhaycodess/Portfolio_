@@ -38,7 +38,7 @@ function Header() {
   return (
     <header className="container mx-auto md:flex justify-between py-2 max-width">
       <div className="flex justify-between items-center py-2 md:py-10">
-        <div className="ml-2">
+        <div className="ml-2 md:-ml-4">
           <button onClick={toggleTheme} aria-label="Toggle theme" className="inline-flex items-center justify-center rounded-full p-2 hover:bg-gray-100 dark:hover:bg-gray-800">
             {isDark ? (
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="text-yellow-300">
