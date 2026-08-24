@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.max-width {
+  @apply lg:mx-auto lg:px-24 xl:px-48 px-5;
+}
+.bg-gradient {
+  @apply bg-gradient-to-r from-sky-500 via-purple-500 to-pink-600;
+}
+.text-gradient {
+  @apply bg-clip-text bg-gradient text-transparent;
+}
+.section {
+  @apply pt-8 md:pt-12 lg:pt-16 pb-8 md:pb-12;
+}
+.text-content {
+  @apply dark:text-light-content text-dark-content;
+}
+body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Hover gradient utility for nav links (uses same gradient as site) */
+.hover-gradient:hover {
+  background-image: linear-gradient(90deg, #0ea5e9, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
