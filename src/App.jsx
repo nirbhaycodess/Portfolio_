@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import Home from "./Pages/Home";
@@ -9,31 +8,34 @@ import Contact from "./Pages/Contact";
 import Projects from "./Pages/Projects";
 import Technologies from "./Pages/Technologies";
 
-gsap.registerPlugin(ScrollTrigger);
-
 function App() {
   const contentRef = useRef(null);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    const sections = contentRef.current?.querySelectorAll(".section:not(#home)") || [];
 
-    const context = gsap.context(() => {
-      gsap.utils.toArray(".section:not(#home)").forEach((section) => {
-        gsap.from(section, {
-          autoAlpha: 0,
-          y: 72,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 82%",
-            once: true,
-          },
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) return undefined;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          gsap.fromTo(
+            entry.target,
+            { autoAlpha: 0, y: 72 },
+            { autoAlpha: 1, y: 0, duration: 0.9, ease: "power3.out" }
+          );
+          observer.unobserve(entry.target);
         });
-      });
-    }, contentRef);
+      },
+      { threshold: 0.15 }
+    );
 
-    return () => context.revert();
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
   }, []);
 
   return (
