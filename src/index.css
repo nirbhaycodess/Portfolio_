@@ -34,3 +34,48 @@ body {
 body::-webkit-scrollbar {
   display: none;
 }
+
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes hero-image-enter {
+  from {
+    opacity: 0;
+    transform: translateX(28px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes hero-wave {
+  0%, 100% { transform: rotate(0); }
+  50% { transform: rotate(18deg); }
+}
+
+.hero-line,
+.hero-image {
+  animation: hero-enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-line-two { animation-delay: 0.12s; }
+.hero-line-three { animation-delay: 0.24s; }
+.hero-image { animation-name: hero-image-enter; animation-delay: 0.16s; }
+.hero-wave { animation: hero-wave 1.5s ease-in-out infinite; transform-origin: 70% 70%; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-line,
+  .hero-image,
+  .hero-wave {
+    animation: none;
+  }
+}
