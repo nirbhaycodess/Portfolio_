@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { personalDetails } from "../Details";
 
@@ -24,73 +24,41 @@ function Home() {
   const h13 = useRef();
   const myimageref = useRef();
   const waveRef = useRef();
-  useEffect(() => {
-    const tl = gsap.timeline();
-    tl.from(
-      h11.current,
-      {
-        x: "-100%",
-        delay: 0.8,
-        opacity: 0,
-        duration: 2,
-        ease: "Power3.easeOut",
-      },
-      "<"
-    )
-      .from(
-        h12.current,
-        {
-          x: "-100%",
-          delay: 0.5,
-          opacity: 0,
-          duration: 2,
-          ease: "Power3.easeOut",
-        },
-        "<"
-      )
-      .from(
-        h13.current,
-        {
-          x: "-100%",
-          delay: 0.1,
-          opacity: 0,
-          duration: 2,
-          ease: "Power3.easeOut",
-        },
-        "<"
-      )
-      .from(
-        myimageref.current,
-        {
-          x: "200%",
-          delay: 0.5,
-          opacity: 0,
-          duration: 2,
-          ease: "Power3.easeOut",
-        },
-        "<"
-      );
-      // subtle entrance for the wave emoji
-      if (waveRef.current) {
-        gsap.from(waveRef.current, { x: -8, opacity: 0, duration: 0.8, ease: "Power2.out" });
-      }
-  }, []);
 
-    // continuous waving animation for the hand emoji
-    useEffect(() => {
+  useLayoutEffect(() => {
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return undefined;
+
+    const context = gsap.context(() => {
+      const timeline = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      timeline
+        .from([h11.current, h12.current, h13.current], {
+          x: -42,
+          autoAlpha: 0,
+          duration: 0.75,
+          stagger: 0.12,
+        })
+        .from(
+          myimageref.current,
+          { x: 44, scale: 0.95, autoAlpha: 0, duration: 0.8 },
+          0.18
+        );
+
       if (waveRef.current) {
         gsap.to(waveRef.current, {
-          rotation: 20,
-          x: 6,
+          rotation: 18,
           yoyo: true,
           repeat: -1,
-          transformOrigin: "50% 50%",
-          duration: 0.35,
+          transformOrigin: "70% 70%",
+          duration: 0.45,
           ease: "sine.inOut",
-          repeatDelay: 0.6,
+          repeatDelay: 1.1,
         });
       }
-    }, []);
+    });
+
+    return () => context.revert();
+  }, []);
 
   // Cycle through translations
   useEffect(() => {
@@ -100,15 +68,18 @@ function Home() {
     return () => clearInterval(id);
   }, [translations.length]);
 
-  // animate name on change
+  // Keep name changes smooth without replaying the entire hero animation.
   useEffect(() => {
-    if (h12.current) {
-      gsap.fromTo(
-        h12.current,
-        { opacity: 0, y: 8 },
-        { opacity: 1, y: 0, duration: 0.5, ease: "Power2.out" }
-      );
-    }
+    const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (nameIndex === 0 || prefersReducedMotion || !h12.current) return undefined;
+
+    const animation = gsap.fromTo(
+      h12.current,
+      { autoAlpha: 0, y: 10 },
+      { autoAlpha: 1, y: 0, duration: 0.4, ease: "power2.out" }
+    );
+
+    return () => animation.kill();
   }, [nameIndex]);
 
   return (
