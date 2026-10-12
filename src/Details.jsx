@@ -23,6 +23,7 @@ import express from "./assets/techstack/express.svg";
 import projectImage1 from "./assets/projects/project1.jpg";
 import projectImage2 from "./assets/projects/project2.jpg";
 import projectImage3 from "./assets/projects/project3.jpg";
+import projectImage4 from "./assets/projects/project4.jpg";
 // Logos
 export const logos = {
   logogradient: logogradient,
@@ -112,6 +113,15 @@ export const projectDetails = [
     techstack: "React, Tailwind CSS",
     previewLink: "https://nirbhay-dev.vercel.app",
     githubLink: "https://github.com/nirbhaycodess/Portfolio_",
+  },
+  {
+    title: "PackInspect",
+    image: projectImage4,
+    description: `PackInspect streamlines audits of packaged-product labels against India's Legal Metrology Rules. Upload a package image to extract declarations with OCR, review compliance checks and violations, and generate inspection reports. The backend uses FastAPI and an Ollama-hosted Hermes 3 AI agent on Oracle Cloud.`,
+    techstack: "React, TypeScript, OCR, FastAPI, Ollama (Hermes 3), Oracle Cloud",
+    previewLink: "https://packinspect.vercel.app/login",
+    githubLink: "https://github.com/nirbhaycodess/SIH034",
+
   },
   
 ];
